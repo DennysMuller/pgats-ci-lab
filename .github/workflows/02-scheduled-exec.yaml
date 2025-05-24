@@ -15,6 +15,7 @@ on:
     # e - dia da semana
 
     # rodar o regressivo toda segunda-feira pela manhã
+    #        a b c d e
     - cron: '0 6 * * 1'
 
 # Trabalhos/tarefas dentro do pipeline = jobs
