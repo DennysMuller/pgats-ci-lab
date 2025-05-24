@@ -12,7 +12,7 @@
 5. Clone o repositório para sua máquina (seu fork)
 6. Instale as dependências
    ```shell
-   cd pgats-ci-projeto-base
+   cd pgats-ci-lab
    yarn
    ```
 7. Execute os testes de unidade - isso vai gerar um relatório
