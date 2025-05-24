@@ -29,7 +29,6 @@ jobs:
 
     # Instalação do Yarn
     - name: Instalar Yarn
-      run: yarn --version
       run: npm install -g yarn
 
     # Instalação das dependências
@@ -42,4 +41,4 @@ jobs:
 
     # Executar os testes e2e
     - name: Executar Testes E2E
-      run: yarn e2e
+      run: yarn run e2e
