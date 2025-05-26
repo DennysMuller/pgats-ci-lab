@@ -4,15 +4,19 @@
 name: 'Execução Agendada'
 
 # Regras de disparo (gatilho/triggers)
-# Gatilho de exec manual = workflow_dispatch
 on: 
   schedule:
     # Padrão do agendamento
-    # a - minuto
-    # b - hora
-    # c - dia do mês
-    # d - mês
-    # e - dia da semana
+    # ┌────────── minutos (0 - 59)
+    # │ ┌──────── hora (0 - 23)
+    # │ │ ┌────── dia do mês (1 - 31)
+    # │ │ │ ┌──── mês (1 - 12)
+    # │ │ │ │ ┌── dia da semana (0 - 6) (Domingo=0)
+    # │ │ │ │ │
+    # │ │ │ │ │
+    # * * * * *
+    # 0 6 * * 1
+    #
 
     # rodar o regressivo toda segunda-feira pela manhã
     #        a b c d e
