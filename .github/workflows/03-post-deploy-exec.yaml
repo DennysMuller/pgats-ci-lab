@@ -7,7 +7,7 @@ name: 'Execução por Deploy'
 # Gatilho de exec a partir de um outro pipe = workflow_run
 on: 
   workflow_run:
-    workflows: ['Execução Manual']
+    workflows: ['Execução Manual'] # Nome do pipeline a disparar (vide 01-manual-exec.yaml)
     types:
       - completed
 
@@ -17,6 +17,10 @@ jobs:
 
     # Máquina que o job vai executar
     runs-on: ubuntu-latest
+
+    # condicional - if
+    # `${ expressao }`
+    if: ${{ github.event.workflow_run.conclusion == 'success'}}
 
     # Passos do script de build
     steps:
