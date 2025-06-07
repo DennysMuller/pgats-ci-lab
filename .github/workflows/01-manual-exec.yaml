@@ -5,40 +5,39 @@ name: 'Execução Manual'
 
 # Regras de disparo (gatilho/triggers)
 # Gatilho de exec manual = workflow_dispatch
-on: 
+on:
   workflow_dispatch:
 
 # Trabalhos/tarefas dentro do pipeline = jobs
 jobs:
   e2e-tests:
-
     # Máquina que o job vai executar
     runs-on: ubuntu-latest
 
     # Passos do script de build
     steps:
-    # Clone do projeto
-    - name: Clonar projeto
-      uses: actions/checkout@v4
+      # Clone do projeto
+      - name: Clonar projeto
+        uses: actions/checkout@v4
 
-    # Instalação do NodeJs
-    - name: Instalar NodeJs
-      uses: actions/setup-node@v3
-      with:
-        node-version: 22.x
+      # Instalação do NodeJs
+      - name: Instalar NodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.x
 
-    # Instalação do Yarn
-    - name: Instalar Yarn
-      run: npm install -g yarn
+      # Instalação do Yarn
+      - name: Instalar Yarn
+        run: npm install -g yarn
 
-    # Instalação das dependências
-    - name: Instalar dependências
-      run: yarn
+      # Instalação das dependências
+      - name: Instalar dependências
+        run: yarn
 
-    # Instalação do Playwright
-    - name: Instalar Playwright
-      run: yarn playwright install
+      # Instalação do Playwright
+      - name: Instalar Playwright
+        run: yarn playwright install
 
-    # Executar os testes e2e
-    - name: Executar Testes E2E
-      run: yarn run e2e
+      # Executar os testes e2e
+      - name: Executar Testes E2E
+        run: yarn run e2e

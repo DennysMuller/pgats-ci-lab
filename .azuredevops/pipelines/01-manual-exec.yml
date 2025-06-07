@@ -8,31 +8,30 @@ pool:
   vmImage: 'ubuntu-latest' # Equivalente ao runs-on
 
 jobs:
-- job: e2e_tests # No Azure DevOps, usamos underline em vez de hífen
-  displayName: 'Executar testes E2E'
-  steps:
-  
-  # Checkout do código (equivalente ao actions/checkout)
-  - checkout: self
-  
-  # Instalação do Node.js
-  - task: NodeTool@0
-    displayName: 'Instalar Node.js'
-    inputs:
-      versionSpec: '22.x'
-  
-  # Instalação do Yarn
-  - script: npm install -g yarn
-    displayName: 'Instalar Yarn'
-  
-  # Instalação das dependências
-  - script: yarn
-    displayName: 'Instalar dependências'
-  
-  # Instalação do Playwright
-  - script: yarn playwright install
-    displayName: 'Instalar Playwright'
-  
-  # Execução dos testes E2E
-  - script: yarn run e2e
-    displayName: 'Executar Testes E2E'
+  - job: e2e_tests # No Azure DevOps, usamos underline em vez de hífen
+    displayName: 'Executar testes E2E'
+    steps:
+      # Checkout do código (equivalente ao actions/checkout)
+      - checkout: self
+
+      # Instalação do Node.js
+      - task: NodeTool@0
+        displayName: 'Instalar Node.js'
+        inputs:
+          versionSpec: '22.x'
+
+      # Instalação do Yarn
+      - script: npm install -g yarn
+        displayName: 'Instalar Yarn'
+
+      # Instalação das dependências
+      - script: yarn
+        displayName: 'Instalar dependências'
+
+      # Instalação do Playwright
+      - script: yarn playwright install
+        displayName: 'Instalar Playwright'
+
+      # Execução dos testes E2E
+      - script: yarn run e2e
+        displayName: 'Executar Testes E2E'

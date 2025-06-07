@@ -5,6 +5,7 @@ Este documento descreve os workflows de automação utilizados no projeto.
 ## Workflow `n1/n2/n3`
 
 ### Job: `e2e-tests`
+
 - **Passos**:
   1. Instalar dependências (`installer deeps`)
   2. Executar scripts de teste (`executor script de testes`)
@@ -15,18 +16,23 @@ Este documento descreve os workflows de automação utilizados no projeto.
 ## Workflow `n4`
 
 ### Bloco 1
+
 #### Job: `inspector`
+
 - **Passos**:
   1. Instalar dependências
   2. Executar script de Lint
 
-#### Job: `unidade`  
+#### Job: `unidade`
+
 - **Passos**:
   1. Instalar dependências
   2. Executar testes unitários
 
 ### Bloco 2
+
 #### Job: `e2e-tests`
+
 - **Passos**:
   1. Instalar dependências
   2. Subir aplicação localmente
@@ -35,7 +41,9 @@ Este documento descreve os workflows de automação utilizados no projeto.
   5. Publicar resultados (formato ZIP ou online)
 
 ### Bloco 3
+
 #### Job: `deploy`
+
 - **Passos**:
   1. Instalar dependências
   2. Gerar artefatos da aplicação

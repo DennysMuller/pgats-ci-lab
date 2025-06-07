@@ -6,7 +6,7 @@ name: 'Execução por Deploy'
 
 # Regras de disparo (gatilho/triggers)
 # Gatilho de exec a partir de um outro pipe = workflow_run
-on: 
+on:
   workflow_run:
     workflows: ['Execução Manual'] # Nome do pipeline a disparar (vide 01-manual-exec.yaml)
     types:
@@ -15,7 +15,6 @@ on:
 # Trabalhos/tarefas dentro do pipeline = jobs
 jobs:
   e2e-tests:
-
     # Máquina que o job vai executar
     runs-on: ubuntu-latest
 
@@ -25,37 +24,37 @@ jobs:
 
     # Passos do script de build
     steps:
-    # Clone do projeto
-    - name: Clonar projeto
-      uses: actions/checkout@v4
+      # Clone do projeto
+      - name: Clonar projeto
+        uses: actions/checkout@v4
 
-    # Instalação do NodeJs
-    - name: Instalar NodeJs
-      uses: actions/setup-node@v3
-      with:
-        node-version: 22.x
+      # Instalação do NodeJs
+      - name: Instalar NodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.x
 
-    # Instalação do Yarn
-    - name: Instalar Yarn
-      run: npm install -g yarn
+      # Instalação do Yarn
+      - name: Instalar Yarn
+        run: npm install -g yarn
 
-    # Instalação das dependências
-    - name: Instalar dependências
-      run: yarn
+      # Instalação das dependências
+      - name: Instalar dependências
+        run: yarn
 
-    # Instalação do Playwright
-    - name: Instalar Playwright
-      run: yarn playwright install
+      # Instalação do Playwright
+      - name: Instalar Playwright
+        run: yarn playwright install
 
-    # Executar os testes e2e
-    - name: Executar Testes E2E
-      run: yarn run e2e
-    
-    - uses: actions/upload-artifact@v4
-      # always() significa que os testes serão executados mesmo se o job falhar
-      # ou for cancelado !cancelled(), garantindo que o relatório de testes seja sempre enviado
-      # success() significa que se todos os testes forem bem-sucedidos gerará
-      if: ${{ !cancelled() }} 
-      with:
-        name: Relatório de Testes E2E
-        path: ./playwright-report
+      # Executar os testes e2e
+      - name: Executar Testes E2E
+        run: yarn run e2e
+
+      - uses: actions/upload-artifact@v4
+        # always() significa que os testes serão executados mesmo se o job falhar
+        # ou for cancelado !cancelled(), garantindo que o relatório de testes seja sempre enviado
+        # success() significa que se todos os testes forem bem-sucedidos gerará
+        if: ${{ !cancelled() }}
+        with:
+          name: Relatório de Testes E2E
+          path: ./playwright-report

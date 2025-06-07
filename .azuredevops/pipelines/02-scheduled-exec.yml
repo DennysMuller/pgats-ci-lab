@@ -5,54 +5,53 @@ name: 'Execução Agendada Azure DevOps'
 
 # Configuração de agendamento no Azure DevOps
 schedules:
-        # Padrão do agendamento
-        # ┌────────── minutos (0 - 59)
-        # │ ┌──────── hora (0 - 23)
-        # │ │ ┌────── dia do mês (1 - 31)
-        # │ │ │ ┌──── mês (1 - 12)
-        # │ │ │ │ ┌── dia da semana (0 - 6) (Domingo=0)
-        # │ │ │ │ │
-        # │ │ │ │ │
-        # * * * * *
-        # 0 6 * * 1
+  # Padrão do agendamento
+  # ┌────────── minutos (0 - 59)
+  # │ ┌──────── hora (0 - 23)
+  # │ │ ┌────── dia do mês (1 - 31)
+  # │ │ │ ┌──── mês (1 - 12)
+  # │ │ │ │ ┌── dia da semana (0 - 6) (Domingo=0)
+  # │ │ │ │ │
+  # │ │ │ │ │
+  # * * * * *
+  # 0 6 * * 1
 
-# rodar o regressivo toda segunda-feira pela manhã
-- cron: '0 6 * * 1'
-  displayName: 'Testes E2E Semanais'
-  branches:
-    include:
-    - main  # Ou seu branch principal (master)
-  always: true  # Executa mesmo sem mudanças no código
+  # rodar o regressivo toda segunda-feira pela manhã
+  - cron: '0 6 * * 1'
+    displayName: 'Testes E2E Semanais'
+    branches:
+      include:
+        - main # Ou seu branch principal (master)
+    always: true # Executa mesmo sem mudanças no código
 
 pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-- job: e2e_tests
-  displayName: 'Executar testes E2E agendados'
-  steps:
-  
-  # Checkout do código
-  - checkout: self
-  
-  # Instalação do Node.js
-  - task: NodeTool@0
-    displayName: 'Instalar Node.js'
-    inputs:
-      versionSpec: '22.x'
-  
-  # Instalação do Yarn
-  - script: npm install -g yarn
-    displayName: 'Instalar Yarn'
-  
-  # Instalação das dependências
-  - script: yarn
-    displayName: 'Instalar dependências'
-  
-  # Instalação do Playwright
-  - script: yarn playwright install
-    displayName: 'Instalar Playwright'
-  
-  # Execução dos testes E2E
-  - script: yarn run e2e
-    displayName: 'Executar Testes E2E'
+  - job: e2e_tests
+    displayName: 'Executar testes E2E agendados'
+    steps:
+      # Checkout do código
+      - checkout: self
+
+      # Instalação do Node.js
+      - task: NodeTool@0
+        displayName: 'Instalar Node.js'
+        inputs:
+          versionSpec: '22.x'
+
+      # Instalação do Yarn
+      - script: npm install -g yarn
+        displayName: 'Instalar Yarn'
+
+      # Instalação das dependências
+      - script: yarn
+        displayName: 'Instalar dependências'
+
+      # Instalação do Playwright
+      - script: yarn playwright install
+        displayName: 'Instalar Playwright'
+
+      # Execução dos testes E2E
+      - script: yarn run e2e
+        displayName: 'Executar Testes E2E'

@@ -1,0 +1,45 @@
+# Mapa Mental para XMind (Estrutura Hierárquica)
+
+## Workflows CI/CD (Tópico Central)
+### Workflow: n1/n2/n3
+- **Job: e2e-tests**  
+  - Instalar dependências  
+  - Executar scripts de teste  
+  - Publicar resultados  
+
+### Workflow: n4  
+#### Bloco 1  
+- **Job: inspector**  
+  - Instalar dependências  
+  - Executar Lint  
+- **Job: unidade**  
+  - Instalar dependências  
+  - Executar testes unitários  
+
+#### Bloco 2  
+- **Job: e2e-tests**  
+  - Instalar dependências  
+  - Subir aplicação local  
+  - Instalar browsers  
+  - Executar testes E2E  
+  - Publicar resultados (ZIP/online)  
+
+#### Bloco 3  
+- **Job: deploy**  
+  - Instalar dependências  
+  - Gerar artefatos  
+  - Publicar em ambiente  
+
+---
+
+### Instruções para XMind:  
+1. Criar um nó central **"Workflows CI/CD"**  
+2. Adicionar os workflows (`n1/n2/n3` e `n4`) como nós primários  
+3. Expandir cada workflow com jobs e steps conforme acima  
+4. Usar ícones diferenciados para:  
+   - 🔧 *Jobs*  
+   - 📦 *Blocos*  
+   - ✔️ *Steps*  
+
+### Dica:  
+- Exporte como `.xmind` e compartilhe com a equipe!  
