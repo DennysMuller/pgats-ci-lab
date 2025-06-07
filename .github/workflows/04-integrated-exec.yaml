@@ -14,13 +14,13 @@ jobs:
         with:
           node-version: latest
 
-      - name: Install Yarn
+      - name: Instalar Yarn
         run: npm install -g yarn
 
-      - name: Install project dependencies
+      - name: Instalar dependências do projeto
         run: yarn
 
-      - name: Code linting
+      - name: Análise de código (lint)
         run: yarn lint
   unidade:
     runs-on: ubuntu-latest
@@ -33,13 +33,13 @@ jobs:
         with:
           node-version: latest
 
-      - name: Install Yarn
+      - name: Instalar o Yarn
         run: npm install -g yarn
 
-      - name: Install project dependencies
+      - name: Instalar dependências do projeto
         run: yarn
 
-      - name: Run unit tests
+      - name: Executar testes unitários
         run: yarn run test
   e2e-tests:
     runs-on: ubuntu-latest
@@ -52,19 +52,19 @@ jobs:
         with:
           node-version: latest
 
-      - name: Install Yarn
+      - name: Instalar o Yarn
         run: npm install -g yarn
 
-      - name: Install project dependencies
+      - name: Instalar dependências do projeto
         run: yarn
 
-      - name: Install Playwright browsers
+      - name: Instalando o Playwright browsers
         run: yarn playwright install
 
-      - name: Run E2E tests
+      - name: Executar testes E2E
         run: yarn run e2e
 
-      - name: Upload do relatório E2E
+      - name: Carregar o relatório E2E
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
