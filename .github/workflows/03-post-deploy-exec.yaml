@@ -54,7 +54,7 @@ jobs:
       # always() significa que o passo será executado mesmo se o job falhar
       # ou for cancelado cancelled(), garantindo que o relatório de testes seja sempre enviado
       # success() significa que o passo só será executado se o job for bem-sucedido
-      if: ${{ cancelled() }} 
+      if: ${{ !cancelled() }} 
       with:
         name: Relatório de Testes E2E
         path: ./playwright-report
