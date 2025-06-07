@@ -49,3 +49,12 @@ jobs:
     # Executar os testes e2e
     - name: Executar Testes E2E
       run: yarn run e2e
+    
+    - uses: actions/upload-artifact@v4
+      # always() significa que o passo será executado mesmo se o job falhar
+      # ou for cancelado cancelled(), garantindo que o relatório de testes seja sempre enviado
+      # success() significa que o passo só será executado se o job for bem-sucedido
+      if: ${{ cancelled() }} 
+      with:
+        name: Relatório de Testes E2E
+        path: ./playwright-report
